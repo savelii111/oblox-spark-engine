@@ -177,5 +177,5 @@ export const meshyTextTo3D = createServerFn({ method: "POST" })
         `Meshy error ${res.status}: ${JSON.stringify(json).slice(0, 300)}`,
       );
     }
-    return { taskId: (json.result as string | undefined) ?? null, raw: json };
+    return { taskId: (json.result as string | undefined) ?? null };
   });

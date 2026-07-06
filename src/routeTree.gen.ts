@@ -9,38 +9,188 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SettingsIndexRouteImport } from './routes/settings.index'
+import { Route as SettingsWebhooksRouteImport } from './routes/settings.webhooks'
+import { Route as SettingsUsageRouteImport } from './routes/settings.usage'
+import { Route as SettingsTeamRouteImport } from './routes/settings.team'
+import { Route as SettingsIntegrationsRouteImport } from './routes/settings.integrations'
+import { Route as SettingsGeneralRouteImport } from './routes/settings.general'
+import { Route as SettingsBillingRouteImport } from './routes/settings.billing'
+import { Route as SettingsAuditLogsRouteImport } from './routes/settings.audit-logs'
+import { Route as SettingsApiKeysRouteImport } from './routes/settings.api-keys'
 
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SettingsIndexRoute = SettingsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => SettingsRoute,
+} as any)
+const SettingsWebhooksRoute = SettingsWebhooksRouteImport.update({
+  id: '/webhooks',
+  path: '/webhooks',
+  getParentRoute: () => SettingsRoute,
+} as any)
+const SettingsUsageRoute = SettingsUsageRouteImport.update({
+  id: '/usage',
+  path: '/usage',
+  getParentRoute: () => SettingsRoute,
+} as any)
+const SettingsTeamRoute = SettingsTeamRouteImport.update({
+  id: '/team',
+  path: '/team',
+  getParentRoute: () => SettingsRoute,
+} as any)
+const SettingsIntegrationsRoute = SettingsIntegrationsRouteImport.update({
+  id: '/integrations',
+  path: '/integrations',
+  getParentRoute: () => SettingsRoute,
+} as any)
+const SettingsGeneralRoute = SettingsGeneralRouteImport.update({
+  id: '/general',
+  path: '/general',
+  getParentRoute: () => SettingsRoute,
+} as any)
+const SettingsBillingRoute = SettingsBillingRouteImport.update({
+  id: '/billing',
+  path: '/billing',
+  getParentRoute: () => SettingsRoute,
+} as any)
+const SettingsAuditLogsRoute = SettingsAuditLogsRouteImport.update({
+  id: '/audit-logs',
+  path: '/audit-logs',
+  getParentRoute: () => SettingsRoute,
+} as any)
+const SettingsApiKeysRoute = SettingsApiKeysRouteImport.update({
+  id: '/api-keys',
+  path: '/api-keys',
+  getParentRoute: () => SettingsRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/dashboard': typeof DashboardRoute
+  '/settings': typeof SettingsRouteWithChildren
+  '/settings/api-keys': typeof SettingsApiKeysRoute
+  '/settings/audit-logs': typeof SettingsAuditLogsRoute
+  '/settings/billing': typeof SettingsBillingRoute
+  '/settings/general': typeof SettingsGeneralRoute
+  '/settings/integrations': typeof SettingsIntegrationsRoute
+  '/settings/team': typeof SettingsTeamRoute
+  '/settings/usage': typeof SettingsUsageRoute
+  '/settings/webhooks': typeof SettingsWebhooksRoute
+  '/settings/': typeof SettingsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/dashboard': typeof DashboardRoute
+  '/settings/api-keys': typeof SettingsApiKeysRoute
+  '/settings/audit-logs': typeof SettingsAuditLogsRoute
+  '/settings/billing': typeof SettingsBillingRoute
+  '/settings/general': typeof SettingsGeneralRoute
+  '/settings/integrations': typeof SettingsIntegrationsRoute
+  '/settings/team': typeof SettingsTeamRoute
+  '/settings/usage': typeof SettingsUsageRoute
+  '/settings/webhooks': typeof SettingsWebhooksRoute
+  '/settings': typeof SettingsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/dashboard': typeof DashboardRoute
+  '/settings': typeof SettingsRouteWithChildren
+  '/settings/api-keys': typeof SettingsApiKeysRoute
+  '/settings/audit-logs': typeof SettingsAuditLogsRoute
+  '/settings/billing': typeof SettingsBillingRoute
+  '/settings/general': typeof SettingsGeneralRoute
+  '/settings/integrations': typeof SettingsIntegrationsRoute
+  '/settings/team': typeof SettingsTeamRoute
+  '/settings/usage': typeof SettingsUsageRoute
+  '/settings/webhooks': typeof SettingsWebhooksRoute
+  '/settings/': typeof SettingsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/dashboard'
+    | '/settings'
+    | '/settings/api-keys'
+    | '/settings/audit-logs'
+    | '/settings/billing'
+    | '/settings/general'
+    | '/settings/integrations'
+    | '/settings/team'
+    | '/settings/usage'
+    | '/settings/webhooks'
+    | '/settings/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/dashboard'
+    | '/settings/api-keys'
+    | '/settings/audit-logs'
+    | '/settings/billing'
+    | '/settings/general'
+    | '/settings/integrations'
+    | '/settings/team'
+    | '/settings/usage'
+    | '/settings/webhooks'
+    | '/settings'
+  id:
+    | '__root__'
+    | '/'
+    | '/dashboard'
+    | '/settings'
+    | '/settings/api-keys'
+    | '/settings/audit-logs'
+    | '/settings/billing'
+    | '/settings/general'
+    | '/settings/integrations'
+    | '/settings/team'
+    | '/settings/usage'
+    | '/settings/webhooks'
+    | '/settings/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DashboardRoute: typeof DashboardRoute
+  SettingsRoute: typeof SettingsRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +198,104 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/settings/': {
+      id: '/settings/'
+      path: '/'
+      fullPath: '/settings/'
+      preLoaderRoute: typeof SettingsIndexRouteImport
+      parentRoute: typeof SettingsRoute
+    }
+    '/settings/webhooks': {
+      id: '/settings/webhooks'
+      path: '/webhooks'
+      fullPath: '/settings/webhooks'
+      preLoaderRoute: typeof SettingsWebhooksRouteImport
+      parentRoute: typeof SettingsRoute
+    }
+    '/settings/usage': {
+      id: '/settings/usage'
+      path: '/usage'
+      fullPath: '/settings/usage'
+      preLoaderRoute: typeof SettingsUsageRouteImport
+      parentRoute: typeof SettingsRoute
+    }
+    '/settings/team': {
+      id: '/settings/team'
+      path: '/team'
+      fullPath: '/settings/team'
+      preLoaderRoute: typeof SettingsTeamRouteImport
+      parentRoute: typeof SettingsRoute
+    }
+    '/settings/integrations': {
+      id: '/settings/integrations'
+      path: '/integrations'
+      fullPath: '/settings/integrations'
+      preLoaderRoute: typeof SettingsIntegrationsRouteImport
+      parentRoute: typeof SettingsRoute
+    }
+    '/settings/general': {
+      id: '/settings/general'
+      path: '/general'
+      fullPath: '/settings/general'
+      preLoaderRoute: typeof SettingsGeneralRouteImport
+      parentRoute: typeof SettingsRoute
+    }
+    '/settings/billing': {
+      id: '/settings/billing'
+      path: '/billing'
+      fullPath: '/settings/billing'
+      preLoaderRoute: typeof SettingsBillingRouteImport
+      parentRoute: typeof SettingsRoute
+    }
+    '/settings/audit-logs': {
+      id: '/settings/audit-logs'
+      path: '/audit-logs'
+      fullPath: '/settings/audit-logs'
+      preLoaderRoute: typeof SettingsAuditLogsRouteImport
+      parentRoute: typeof SettingsRoute
+    }
+    '/settings/api-keys': {
+      id: '/settings/api-keys'
+      path: '/api-keys'
+      fullPath: '/settings/api-keys'
+      preLoaderRoute: typeof SettingsApiKeysRouteImport
+      parentRoute: typeof SettingsRoute
+    }
   }
 }
 
+interface SettingsRouteChildren {
+  SettingsApiKeysRoute: typeof SettingsApiKeysRoute
+  SettingsAuditLogsRoute: typeof SettingsAuditLogsRoute
+  SettingsBillingRoute: typeof SettingsBillingRoute
+  SettingsGeneralRoute: typeof SettingsGeneralRoute
+  SettingsIntegrationsRoute: typeof SettingsIntegrationsRoute
+  SettingsTeamRoute: typeof SettingsTeamRoute
+  SettingsUsageRoute: typeof SettingsUsageRoute
+  SettingsWebhooksRoute: typeof SettingsWebhooksRoute
+  SettingsIndexRoute: typeof SettingsIndexRoute
+}
+
+const SettingsRouteChildren: SettingsRouteChildren = {
+  SettingsApiKeysRoute: SettingsApiKeysRoute,
+  SettingsAuditLogsRoute: SettingsAuditLogsRoute,
+  SettingsBillingRoute: SettingsBillingRoute,
+  SettingsGeneralRoute: SettingsGeneralRoute,
+  SettingsIntegrationsRoute: SettingsIntegrationsRoute,
+  SettingsTeamRoute: SettingsTeamRoute,
+  SettingsUsageRoute: SettingsUsageRoute,
+  SettingsWebhooksRoute: SettingsWebhooksRoute,
+  SettingsIndexRoute: SettingsIndexRoute,
+}
+
+const SettingsRouteWithChildren = SettingsRoute._addFileChildren(
+  SettingsRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DashboardRoute: DashboardRoute,
+  SettingsRoute: SettingsRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

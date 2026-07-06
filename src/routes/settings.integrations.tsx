@@ -226,8 +226,8 @@ function IntegrationCard({
 }
 
 function IntegrationsPage() {
-  const data = Route.useLoaderData();
-  const statusBySlug = new Map(data.map((d) => [d.slug, d]));
+  const data = Route.useLoaderData() as IntegrationStatus[];
+  const statusBySlug = new Map<IntegrationSlug, IntegrationStatus>(data.map((d) => [d.slug, d]));
 
   return (
     <div className="max-w-4xl mx-auto px-6 md:px-10 py-10">

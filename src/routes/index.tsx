@@ -9,6 +9,10 @@ import {
   Clock,
   Sliders,
   TrendingUp,
+  MousePointerClick,
+  Layers,
+  Gamepad2,
+  Boxes,
 } from "lucide-react";
 import heroImg from "@/assets/hero-voxel.jpg";
 import { Logo } from "@/components/Logo";

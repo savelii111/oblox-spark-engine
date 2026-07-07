@@ -68,39 +68,56 @@ function Nav({ overlay = false }: { overlay?: boolean }) {
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden">
+    <section className="relative min-h-screen w-full overflow-hidden">
+      {/* Full-bleed hero image */}
+      <img
+        src={heroImg}
+        alt="Epic voxel dragon Roblox scene"
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+      {/* Cinematic gradient overlays for legibility */}
       <div
-        className="absolute inset-0 -z-10 opacity-60"
+        className="absolute inset-0"
         style={{
-          backgroundImage:
-            "radial-gradient(600px 300px at 15% 0%, oklch(0.97 0.05 295), transparent), radial-gradient(500px 300px at 85% 10%, oklch(0.97 0.05 265), transparent)",
+          background:
+            "linear-gradient(180deg, oklch(0.15 0.05 275 / 0.55) 0%, oklch(0.15 0.05 275 / 0.15) 35%, oklch(0.15 0.05 275 / 0.15) 55%, oklch(0.1 0.06 275 / 0.85) 100%)",
         }}
       />
-      <div className="mx-auto max-w-7xl px-6 pt-14 pb-28 grid lg:grid-cols-12 gap-10 lg:gap-8 items-center">
-        <div className="lg:col-span-5 relative z-10">
-          <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] px-3 py-1.5 rounded-full bg-accent text-accent-foreground border border-border">
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(60% 50% at 20% 60%, oklch(0.2 0.15 285 / 0.55), transparent 70%)",
+        }}
+      />
+
+      <Nav overlay />
+
+      <div className="relative z-10 mx-auto max-w-7xl px-6 pt-40 md:pt-48 pb-24 min-h-screen flex flex-col justify-center">
+        <div className="max-w-3xl">
+          <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] px-3 py-1.5 rounded-full bg-white/10 backdrop-blur border border-white/20 text-white">
             <Sparkles className="w-3.5 h-3.5" /> AI Game Creator for Roblox
           </span>
-          <h1 className="mt-6 font-display text-[3.25rem] md:text-[4.25rem] lg:text-[5.25rem] font-bold leading-[0.95]">
+          <h1 className="mt-6 font-display text-white text-[3rem] md:text-[4.5rem] lg:text-[6rem] font-bold leading-[0.9] drop-shadow-[0_6px_30px_rgba(0,0,0,0.4)]">
             Turn a prompt
             <br />
             into a{" "}
-            <span className="italic font-serif font-normal text-gradient tracking-tight">
+            <span className="italic font-serif font-normal tracking-tight bg-gradient-to-r from-violet-300 via-fuchsia-300 to-indigo-300 bg-clip-text text-transparent">
               Roblox
             </span>{" "}
             game.
           </h1>
-          <p className="mt-6 text-lg text-muted-foreground max-w-lg leading-relaxed">
+          <p className="mt-6 text-lg md:text-xl text-white/85 max-w-xl leading-relaxed">
             Describe your idea in plain English. BloxelAI builds the world, the assets,
             the scripts and the gameplay — then ships it straight to Roblox.
           </p>
 
-          <div className="mt-8 max-w-xl">
-            <div className="flex items-center gap-2 rounded-2xl border border-border bg-white p-2 pl-4 shadow-[0_10px_40px_-12px_rgba(124,58,237,0.35)]">
+          <div className="mt-10 max-w-2xl">
+            <div className="flex items-center gap-2 rounded-2xl border border-white/40 bg-white p-2 pl-4 shadow-[0_20px_80px_-20px_rgba(0,0,0,0.6)]">
               <Wand2 className="w-5 h-5 text-primary shrink-0" />
               <input
                 defaultValue="A dragon battle arena with magic swords and epic loot"
-                className="flex-1 bg-transparent outline-none text-[15px] text-foreground placeholder:text-muted-foreground py-2"
+                className="flex-1 bg-transparent outline-none text-[15px] text-foreground placeholder:text-muted-foreground py-2.5"
               />
               <Link
                 to="/dashboard"
@@ -109,86 +126,87 @@ function Hero() {
                 Generate <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
-            <p className="mt-3 text-xs text-muted-foreground pl-1">
+            <p className="mt-3 text-xs text-white/70 pl-1">
               Try: "obby through a candy kingdom" · "tycoon on Mars" · "PvP sword arena"
             </p>
           </div>
         </div>
 
-        <div className="lg:col-span-7 relative">
-          <div
-            className="absolute -inset-8 -z-10 rounded-[2.5rem] blur-3xl opacity-60"
-            style={{
-              background:
-                "radial-gradient(60% 60% at 50% 40%, oklch(0.75 0.2 295 / 0.55), transparent 70%)",
-            }}
-          />
-          <div className="relative rounded-[2rem] overflow-hidden border border-border shadow-[0_30px_80px_-20px_rgba(76,29,149,0.35)]">
-            <img
-              src={heroImg}
-              alt="Epic voxel dragon Roblox scene"
-              width={1536}
-              height={1280}
-              className="w-full h-auto block"
-            />
-            <div className="absolute top-4 left-4 flex items-center gap-2 px-3 py-1.5 rounded-full bg-background/85 backdrop-blur border border-border">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="text-xs font-medium">Generating scene…</span>
-            </div>
-            <div className="absolute bottom-4 right-4 px-3 py-1.5 rounded-full bg-background/85 backdrop-blur border border-border text-xs font-medium">
-              Dragon Arena · v1
-            </div>
-          </div>
+        {/* Bottom marquee-style stats bar */}
+        <div className="mt-20 flex flex-wrap items-center gap-x-10 gap-y-4 text-white/80 text-sm border-t border-white/15 pt-6">
+          <div className="flex items-center gap-2"><Boxes className="w-4 h-4" /> 12M+ voxel blocks placed</div>
+          <div className="flex items-center gap-2"><Gamepad2 className="w-4 h-4" /> 40k+ games shipped</div>
+          <div className="flex items-center gap-2"><Zap className="w-4 h-4" /> Avg. build time · 90 seconds</div>
         </div>
       </div>
     </section>
   );
 }
 
-const VALUE_CARDS = [
+const STEPS = [
   {
-    icon: Wand2,
-    title: "AI Game Generation",
-    desc: "Turn a single sentence into a complete Roblox place with terrain, logic and characters.",
-    tone: "var(--pastel-violet)",
-    fg: "var(--brand)",
+    n: "01",
+    icon: MousePointerClick,
+    title: "Describe your world",
+    desc: "One sentence is enough. A tycoon on Mars, a candy obby, a PvP sword arena — anything you can picture.",
   },
   {
-    icon: Sparkles,
-    title: "Automatic Assets",
-    desc: "Meshy-powered text-to-3D produces props, characters and vehicles on demand.",
-    tone: "var(--pastel-pink)",
-    fg: "oklch(0.55 0.2 350)",
+    n: "02",
+    icon: Layers,
+    title: "AI assembles everything",
+    desc: "BloxelAI generates terrain, 3D assets via Meshy, Luau scripts, UI and multiplayer logic in parallel.",
   },
   {
-    icon: Code2,
-    title: "Smart Scripting",
-    desc: "Clean Luau scripts for movement, scoring, UI and multiplayer — ready to tweak.",
-    tone: "var(--pastel-blue)",
-    fg: "oklch(0.5 0.2 240)",
-  },
-  {
+    n: "03",
     icon: Rocket,
-    title: "One-Click Publish",
-    desc: "Deploy straight to Roblox with one click. Iterate live from your dashboard.",
-    tone: "var(--pastel-green)",
-    fg: "oklch(0.5 0.18 155)",
+    title: "Ship straight to Roblox",
+    desc: "One click publishes the place. Iterate live — the agent edits scripts and assets while you play.",
   },
 ] as const;
 
 function Values() {
   return (
-    <section id="features" className="mx-auto max-w-7xl px-6 py-20">
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {VALUE_CARDS.map((c) => (
-          <div key={c.title} className="card-soft p-6 hover:shadow-lg transition">
-            <div className="pastel-icon" style={{ background: c.tone }}>
-              <c.icon className="w-5 h-5" style={{ color: c.fg }} />
+    <section id="features" className="relative bg-[oklch(0.16_0.04_275)] text-white overflow-hidden">
+      <div
+        className="absolute inset-0 opacity-40"
+        style={{
+          background:
+            "radial-gradient(500px 300px at 90% 0%, oklch(0.55 0.24 295 / 0.5), transparent), radial-gradient(600px 400px at 0% 100%, oklch(0.5 0.24 265 / 0.4), transparent)",
+        }}
+      />
+      <div className="relative mx-auto max-w-7xl px-6 py-28">
+        <div className="max-w-2xl">
+          <span className="inline-flex text-[11px] font-semibold uppercase tracking-[0.18em] px-3 py-1.5 rounded-full bg-white/10 border border-white/20">
+            The workflow
+          </span>
+          <h2 className="mt-6 font-display text-4xl md:text-6xl font-bold leading-[0.95]">
+            Three steps.{" "}
+            <span className="italic font-serif font-normal bg-gradient-to-r from-violet-300 to-fuchsia-300 bg-clip-text text-transparent">
+              No engine
+            </span>{" "}
+            required.
+          </h2>
+        </div>
+
+        <div className="mt-16 grid md:grid-cols-3 gap-px bg-white/10 rounded-3xl overflow-hidden border border-white/10">
+          {STEPS.map((s) => (
+            <div
+              key={s.n}
+              className="relative p-8 md:p-10 bg-[oklch(0.16_0.04_275)] hover:bg-[oklch(0.2_0.06_285)] transition group"
+            >
+              <div className="flex items-start justify-between">
+                <span className="font-serif italic text-6xl text-white/20 leading-none">
+                  {s.n}
+                </span>
+                <div className="w-11 h-11 rounded-xl bg-white/10 border border-white/15 flex items-center justify-center group-hover:bg-primary/30 transition">
+                  <s.icon className="w-5 h-5" />
+                </div>
+              </div>
+              <h3 className="mt-10 text-2xl font-semibold">{s.title}</h3>
+              <p className="mt-3 text-white/70 leading-relaxed">{s.desc}</p>
             </div>
-            <h3 className="mt-5 text-lg font-semibold">{c.title}</h3>
-            <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{c.desc}</p>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );

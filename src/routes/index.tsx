@@ -212,42 +212,100 @@ function Values() {
   );
 }
 
-const CHIPS = [
-  { icon: Zap, label: "Beginner Friendly" },
-  { icon: Clock, label: "Save Hours of Work" },
-  { icon: Sliders, label: "Full Creative Control" },
-  { icon: TrendingUp, label: "Always Improving" },
+const FEATURES = [
+  {
+    icon: Wand2,
+    kicker: "Generation",
+    title: "AI game generation",
+    desc: "Terrain, logic, characters — a complete Roblox place from a single sentence.",
+  },
+  {
+    icon: Sparkles,
+    kicker: "Assets",
+    title: "Meshy text-to-3D",
+    desc: "Props, characters and vehicles modeled on demand, dropped straight into your scene.",
+  },
+  {
+    icon: Code2,
+    kicker: "Scripting",
+    title: "Clean Luau code",
+    desc: "Readable scripts for movement, scoring, UI and multiplayer — yours to tweak.",
+  },
+  {
+    icon: Rocket,
+    kicker: "Ship",
+    title: "One-click publish",
+    desc: "Deploy live to Roblox and iterate from the dashboard while players are online.",
+  },
 ] as const;
 
-function HowItWorks() {
+function Features() {
   return (
-    <section id="how" className="mx-auto max-w-4xl px-6 py-24 text-center">
-      <span className="inline-flex text-xs font-semibold uppercase tracking-wider px-3 py-1.5 rounded-full bg-accent text-accent-foreground border border-border">
-        Workflow
-      </span>
-      <h2 className="mt-6 text-4xl md:text-5xl font-bold tracking-tight">
-        From Idea to Roblox in <span className="text-gradient">Minutes</span>
-      </h2>
-      <p className="mt-4 text-muted-foreground text-lg">
-        Skip weeks of setup. Focus on the fun. BloxelAI handles the heavy lifting.
-      </p>
-      <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-        {CHIPS.map((c) => (
-          <span
-            key={c.label}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-card text-sm font-medium"
-          >
-            <c.icon className="w-4 h-4 text-primary" /> {c.label}
+    <section id="how" className="mx-auto max-w-7xl px-6 py-28">
+      <div className="grid lg:grid-cols-12 gap-10 items-end">
+        <div className="lg:col-span-6">
+          <span className="inline-flex text-[11px] font-semibold uppercase tracking-[0.18em] px-3 py-1.5 rounded-full bg-accent text-accent-foreground border border-border">
+            Everything included
           </span>
+          <h2 className="mt-6 font-display text-4xl md:text-6xl font-bold leading-[0.95]">
+            Built to feel like{" "}
+            <span className="italic font-serif font-normal text-gradient">magic</span>,
+            engineered like a studio.
+          </h2>
+        </div>
+        <p className="lg:col-span-5 lg:col-start-8 text-lg text-muted-foreground leading-relaxed">
+          BloxelAI orchestrates the boring parts of Roblox development so you can spend your
+          time on the fun idea in your head — not on rigging, scripting and asset pipelines.
+        </p>
+      </div>
+
+      <div className="mt-16 grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+        {FEATURES.map((f, i) => (
+          <div
+            key={f.title}
+            className="card-soft p-7 hover:-translate-y-1 hover:shadow-[0_20px_50px_-20px_rgba(124,58,237,0.35)] transition"
+          >
+            <div className="flex items-center justify-between">
+              <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-violet-100 to-indigo-100 border border-violet-200/50 flex items-center justify-center">
+                <f.icon className="w-5 h-5 text-primary" />
+              </div>
+              <span className="font-serif italic text-2xl text-muted-foreground/60">
+                0{i + 1}
+              </span>
+            </div>
+            <p className="mt-6 text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">
+              {f.kicker}
+            </p>
+            <h3 className="mt-1.5 text-xl font-semibold">{f.title}</h3>
+            <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
+          </div>
         ))}
       </div>
-      <div className="mt-12">
-        <Link
-          to="/dashboard"
-          className="btn-gradient inline-flex items-center gap-2 text-base font-semibold px-7 py-3.5 rounded-full"
-        >
-          Try BloxelAI Free <ArrowRight className="w-4 h-4" />
-        </Link>
+
+      <div className="mt-24 relative overflow-hidden rounded-[2rem] p-12 md:p-16 text-center border border-border"
+        style={{ background: "var(--gradient-brand)" }}
+      >
+        <div
+          className="absolute inset-0 opacity-30"
+          style={{
+            background: "radial-gradient(400px 200px at 20% 0%, white, transparent), radial-gradient(400px 200px at 80% 100%, white, transparent)",
+          }}
+        />
+        <div className="relative">
+          <h3 className="font-display text-4xl md:text-6xl font-bold text-white leading-[0.95]">
+            Your first game,{" "}
+            <span className="italic font-serif font-normal">in the next 90 seconds.</span>
+          </h3>
+          <p className="mt-5 text-white/85 text-lg max-w-xl mx-auto">
+            No engine, no scripting, no asset store. Just an idea and a prompt.
+          </p>
+          <Link
+            to="/dashboard"
+            className="mt-8 inline-flex items-center gap-2 text-base font-semibold px-7 py-3.5 rounded-full bg-white text-primary hover:bg-white/95 shadow-xl"
+          >
+            Start building free <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
       </div>
     </section>
   );
@@ -274,10 +332,9 @@ function Footer() {
 function LandingPage() {
   return (
     <div className="min-h-screen bg-background">
-      <Nav />
       <Hero />
       <Values />
-      <HowItWorks />
+      <Features />
       <Footer />
     </div>
   );

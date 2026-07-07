@@ -4,6 +4,7 @@ import {
   Wand2,
   Code2,
   Rocket,
+  Rocket,
   Star,
   ArrowRight,
   Zap,

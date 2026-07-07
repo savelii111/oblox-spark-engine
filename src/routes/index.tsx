@@ -21,22 +21,35 @@ export const Route = createFileRoute("/")({
   component: LandingPage,
 });
 
-function Nav() {
+function Nav({ overlay = false }: { overlay?: boolean }) {
   return (
-    <header className="sticky top-0 z-40 backdrop-blur bg-background/80 border-b border-border">
-      <div className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between">
-        <Logo />
-        <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-muted-foreground">
-          <a href="#features" className="hover:text-foreground">Features</a>
-          <a href="#how" className="hover:text-foreground">How It Works</a>
-          <a href="#examples" className="hover:text-foreground">Examples</a>
-          <a href="#pricing" className="hover:text-foreground">Pricing</a>
-          <a href="#docs" className="hover:text-foreground">Docs</a>
+    <header
+      className={
+        overlay
+          ? "absolute top-0 inset-x-0 z-40"
+          : "sticky top-0 z-40 backdrop-blur bg-background/80 border-b border-border"
+      }
+    >
+      <div className="mx-auto max-w-7xl px-6 h-20 flex items-center justify-between">
+        <div className={overlay ? "text-white [&_*]:!text-white" : ""}>
+          <Logo />
+        </div>
+        <nav
+          className={`hidden md:flex items-center gap-8 text-sm font-medium ${
+            overlay ? "text-white/80" : "text-muted-foreground"
+          }`}
+        >
+          <a href="#features" className={overlay ? "hover:text-white" : "hover:text-foreground"}>Features</a>
+          <a href="#how" className={overlay ? "hover:text-white" : "hover:text-foreground"}>How It Works</a>
+          <a href="#examples" className={overlay ? "hover:text-white" : "hover:text-foreground"}>Examples</a>
+          <a href="#pricing" className={overlay ? "hover:text-white" : "hover:text-foreground"}>Pricing</a>
         </nav>
         <div className="flex items-center gap-2">
           <Link
             to="/dashboard"
-            className="hidden sm:inline-flex text-sm font-medium px-4 py-2 rounded-full text-foreground hover:bg-muted"
+            className={`hidden sm:inline-flex text-sm font-medium px-4 py-2 rounded-full ${
+              overlay ? "text-white hover:bg-white/10" : "text-foreground hover:bg-muted"
+            }`}
           >
             Log in
           </Link>
@@ -44,7 +57,7 @@ function Nav() {
             to="/dashboard"
             className="btn-gradient inline-flex items-center gap-2 text-sm font-semibold px-5 py-2.5 rounded-full"
           >
-            Start Building Free
+            Start Building
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
